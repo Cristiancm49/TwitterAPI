@@ -2,6 +2,7 @@
 import json
 from datetime import date
 from typing import Optional, List
+
 from uuid import UUID
 from datetime import datetime
 
@@ -127,7 +128,26 @@ def login():
     tags=["Users"]
 )
 def mostrar_todos_los_usuarios():
-    pass
+    """
+    MOTRAR TODOS LOS USUARIOS
+
+    Esta path parameter muestra a todos los usuarios de la aplciacion
+
+    Parameters:
+     -
+
+    Returns:
+    Retorna un Json con todos los usuarios de la app, seguido de las siguientes llaves
+     - user_id: UUID
+     - email: Emailstr
+     - firt_name: str
+     - last_name: str
+     - birth_date: date
+
+    """
+    with open("users.json", "r", encoding="utf-8") as f:
+       results = json.loads(f.read()) 
+       return results
 
 ### Mostrar un usuario
 @app.get(
