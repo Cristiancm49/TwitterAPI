@@ -64,7 +64,7 @@ class Tweet(BaseModel):
         max_length=256
     )
     create_at: datetime = Field(default=datetime.now())
-    update_at: Optional[datetime] = Field(default=None)
+    updated_at: Optional[datetime] = Field(default=None)
     by: User = Field(...)
 
 
@@ -185,7 +185,9 @@ def actualizar_usuario():
     pass
 
 
+
 ## Tweets
+
 ### Mostrar todos los tweets
 @app.get(
     path="/",
@@ -206,8 +208,35 @@ def home():
     summary="Crear un tweet",
     tags=["Tweets"]
 )
-def crear_un_tweet():
-    pass
+def crear_un_tweet(tweet: Tweet = Body(...)):
+    """
+    CREAR UN TWEET
+
+    Esta path operation crea un tweet en la aplicacion
+
+    Parameters:
+     -Request body parameter
+      - tweet: tweet
+
+    Return Json con la informacion basica de un tweet:
+     - tweet_id: UUID
+     - content: str
+     - update_at: Optional[datetime]
+     - create_at: date
+     - by: User
+    """
+    with open("tweets.json", "r+", encoding="utf-8") as f:
+        results = json.loads(f.read())
+        tweet_dict = tweet.dict()
+        tweet_dict["tweet_id"]= str(tweet_dict["tweet_id"])
+        tweet_dict["create_at"]= str(tweet_dict["create_at"])
+        tweet_dict["updated_at"] = str(tweet_dict["updated_at"])
+        tweet_dict["by"]["user_id"] = str(tweet_dict["by"]["user_id"])
+        tweet_dict["by"]["birth_date"] = str(tweet_dict["by"]["birth_date"])
+        results.append(tweet_dict)
+        f.seek(0)
+        f.write(json.dumps(results))
+        return tweet
 
 
 ### Mostrar un tweet
