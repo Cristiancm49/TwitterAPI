@@ -197,7 +197,26 @@ def actualizar_usuario():
     tags=["Tweets"]
     )
 def home():
-    return {"Twitter API":"Working!"}
+    """
+    MOTRAR TODOS LOS TWWET
+
+    Esta path parameter muestra a todos los tweet de la aplciacion
+
+    Parameters:
+     -
+
+    Returns:
+    Retorna un Json con todos los usuarios de la app, seguido de las siguientes llaves
+     - tweet_id: UUID
+     - content: str
+     - update_at: Optional[datetime]
+     - create_at: date
+     - by: User
+
+    """
+    with open("tweets.json", "r", encoding="utf-8") as f:
+       results = json.loads(f.read()) 
+       return results
 
 
 ### Crear un tweet
