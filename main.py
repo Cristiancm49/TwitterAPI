@@ -1,6 +1,8 @@
 #Python
 import json
 from datetime import date
+import re
+from turtle import st
 from typing import Optional, List
 
 from uuid import UUID
@@ -151,14 +153,37 @@ def mostrar_todos_los_usuarios():
 
 ### Mostrar un usuario
 @app.get(
-    path="/users/{user_id}",
+    path="/users/{email}",
     response_model= User,
     status_code=status.HTTP_200_OK,
     summary="Mostrar usuario",
     tags=["Users"]
 )
-def mostrar_usuario():
-    pass
+def mostrar_usuario(email: EmailStr):
+    """
+    MOTRAR UN USUARIO
+
+    Esta path parameter muestra a todos los usuarios de la aplciacion
+
+    Parameters:
+     - Request body parameter
+      -email: Emailstr
+
+    Returns:
+    Retorna un Json con un usuario de la app, seguido de las siguientes llaves
+     - user_id: UUID
+     - email: Emailstr
+     - firt_name: str
+     - last_name: str
+     - birth_date: date
+    """
+    with open("users.json", "r", encoding="utf-8") as f:
+        results = json.loads(f.read())
+        for temp in results:
+            if temp["email"] == email:
+                return temp
+            else:
+                continue
 
 
 ### Eliminar un usuario

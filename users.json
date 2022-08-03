@@ -1,7 +1,7 @@
 [
     {
         "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "email": "user@example.com",
+        "email": "user1@example.com",
         "first_name": "string",
         "last_name": "string",
         "birth_date": "2022-08-02",
@@ -9,7 +9,7 @@
     },
     {
         "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "email": "user@example.com",
+        "email": "user2@example.com",
         "first_name": "string",
         "last_name": "string",
         "birth_date": "2022-08-02",
@@ -17,7 +17,7 @@
     },
     {
         "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "email": "user@example.com",
+        "email": "user3@example.com",
         "first_name": "string",
         "last_name": "string",
         "birth_date": "2022-08-02",
